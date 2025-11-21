@@ -15,10 +15,11 @@ import tyro
 class Args:
     out_dir: pathlib.Path = pathlib.Path("data/aloha_sim/videos")
 
-    task: str = "gym_aloha/AlohaTransferCube-v0"
-    seed: int = 0
+    # task: str = "gym_aloha/AlohaTransferCube-v0"
+    task: str = "gym_aloha/AlohaInsertion-v0"
+    seed: int = 42
 
-    action_horizon: int = 10
+    action_horizon: int = 50
 
     host: str = "0.0.0.0"
     port: int = 8000
