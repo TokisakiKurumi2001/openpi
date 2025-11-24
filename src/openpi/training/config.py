@@ -910,20 +910,20 @@ _CONFIGS = [
     #
     # ALOHA Sim configs. This config is used to demonstrate how to train on a simple simulated environment.
     #
-    # TrainConfig(
-    #     name="pi0_aloha_sim",
-    #     model=pi0_config.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"),
-    #     data=LeRobotAlohaDataConfig(
-    #         repo_id="lerobot/aloha_sim_transfer_cube_human",
-    #         default_prompt="Pick up the cube with the right arm and transfer it to the left arm.",
-    #         use_delta_joint_actions=False,
-    #     ),
-    #     weight_loader=weight_loaders.CheckpointWeightLoader("gs://openpi-assets/checkpoints/pi0_base/params"),
-    #     freeze_filter=pi0_config.Pi0Config(
-    #         paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"
-    #     ).get_freeze_filter(),
-    #     num_train_steps=20_000,
-    # ),
+    TrainConfig(
+        name="pi0_aloha_sim",
+        model=pi0_config.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"),
+        data=LeRobotAlohaDataConfig(
+            repo_id="lerobot/aloha_sim_transfer_cube_human",
+            default_prompt="Pick up the cube with the right arm and transfer it to the left arm.",
+            use_delta_joint_actions=False,
+        ),
+        weight_loader=weight_loaders.CheckpointWeightLoader("gs://openpi-assets/checkpoints/pi0_base/params"),
+        freeze_filter=pi0_config.Pi0Config(
+            paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"
+        ).get_freeze_filter(),
+        num_train_steps=20_000,
+    ),
     TrainConfig(
         name="pi0_aloha_base",
         model=pi0_config.Pi0Config(),
@@ -938,20 +938,20 @@ _CONFIGS = [
     TrainConfig(
         name="pi0_aloha_sim_insert",
         # Here is an example of loading a pi0 model for LoRA fine-tuning.
-        model=pi0_config.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"),
+        model=pi0_config.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora_64"),
         data=LeRobotAlohaDataConfig(
             repo_id="lerobot/aloha_sim_insertion_human",
             default_prompt="Insert the peg into the socket.",
             use_delta_joint_actions=False,
         ),
         weight_loader=weight_loaders.CheckpointWeightLoader("gs://openpi-assets/checkpoints/pi0_base/params"),
-        num_train_steps=40_000,
+        num_train_steps=20_000,
         # The freeze filter defines which parameters should be frozen during training.
         # We have a convenience function in the model config that returns the default freeze filter
         # for the given model config for LoRA finetuning. Just make sure it matches the model config
         # you chose above.
         freeze_filter=pi0_config.Pi0Config(
-            paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"
+            paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora_64"
         ).get_freeze_filter(),
         # Turn off EMA for LoRA finetuning.
         ema_decay=None,
