@@ -11,5 +11,5 @@ uv run scripts/serve_policy.py policy:checkpoint --policy.config=pi0_aloha_sim -
 
 uv run scripts/serve_policy.py policy:checkpoint --policy.config=pi0_aloha_base --policy.dir=gs://openpi-assets/checkpoints/pi0_base
 
-uv run scripts/serve_policy.py policy:checkpoint --policy.config=pi0_aloha_sim_insert --policy.dir=checkpoints/pi0_aloha_sim_insert/experiment/29999
+uv run scripts/serve_policy.py policy:checkpoint --policy.config=pi0_aloha_sim_insert --policy.dir=checkpoints/pi0_aloha_sim_insert/big_experiment/19999
 ```

@@ -938,7 +938,7 @@ _CONFIGS = [
     TrainConfig(
         name="pi0_aloha_sim_insert",
         # Here is an example of loading a pi0 model for LoRA fine-tuning.
-        model=pi0_config.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora_64"),
+        model=pi0_config.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"),
         data=LeRobotAlohaDataConfig(
             repo_id="lerobot/aloha_sim_insertion_human",
             default_prompt="Insert the peg into the socket.",
@@ -951,7 +951,7 @@ _CONFIGS = [
         # for the given model config for LoRA finetuning. Just make sure it matches the model config
         # you chose above.
         freeze_filter=pi0_config.Pi0Config(
-            paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora_64"
+            paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora"
         ).get_freeze_filter(),
         # Turn off EMA for LoRA finetuning.
         ema_decay=None,
